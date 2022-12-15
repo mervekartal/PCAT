@@ -12,12 +12,12 @@ app.use(express.static('public'))
 // app.use(myLogger)
 
 app.get('/', (req, res) => {
-  const photo = {
-    id: 1,
-    name: 'photo name',
-    description: 'description',
-  }
-  res.send(photo)
+  // const photo = {
+  //   id: 1,
+  //   name: 'photo name',
+  //   description: 'description',
+  // }
+  // res.send(photo)
 })
 
 const port = 3000;
