@@ -20,9 +20,13 @@ const PhotoSchema = new Schema({
 const Photo = mongoose.model('Photo',PhotoSchema)
 
 //create photo
-Photo.create({
-    title: "Photo Test 2",
-    description: "Photo description test 2"
-})
+// Photo.create({
+//     title: "Photo Test 2",
+//     description: "Photo description test 2"
+// })
 
 
+//read photo
+Photo.find({}, (err, data) => {
+    console.log(data);
+  });
