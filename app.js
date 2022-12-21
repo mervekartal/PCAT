@@ -13,11 +13,14 @@ app.set("view engine", "ejs")
 // }
 
 //middlewares
-//statik dosyaları(css html gibi) public klasörüne taşındı
+//statik dosyaları(css, html gibi) public klasörüne taşındı
 app.use(express.static('public'))
 // app.use(myLogger)
 
-//route
+app.use(express.urlencoded({extended: true}))
+app.use(express.json())
+
+//routes
 app.get('/', (req, res) => {
   //res.sendFile(path.resolve(__dirname, 'temp/index.html'))
   res.render('index')
@@ -27,6 +30,10 @@ app.get('/add', (req, res) => {
 })
 app.get('/about', (req, res) => {
   res.render('about')
+})
+app.post('/photos', (req, res) => {
+  console.log(req.body)
+  res.redirect('/')
 })
 
 
