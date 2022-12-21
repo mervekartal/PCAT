@@ -27,6 +27,29 @@ const Photo = mongoose.model('Photo',PhotoSchema)
 
 
 //read photo
-Photo.find({}, (err, data) => {
-    console.log(data);
-  });
+// Photo.find({}, (err, data) => {
+//     console.log(data);
+//   })
+
+//update photo
+// const id = '63a2b7b9aecc9004da6b58e9';
+// Photo.findByIdAndUpdate(
+//   id,
+//   {
+//     title: 'Photo Test 1 updated',
+//     description: 'Photo description test 1 updated',
+//   },
+//   {
+//       new: true //console'da verinin güncellenmiş halini gösterir.
+//   },
+//   (err, data) => {
+//     console.log(data);
+//   }
+// )
+
+//delete a photo
+const id = '63a2e50a022142fa3aedf2f4'
+
+Photo.findByIdAndDelete(id, (err, data) => {
+  console.log('Photo removed');
+})
