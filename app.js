@@ -29,7 +29,7 @@ app.set("view engine", "ejs")
 app.use(express.static('public'))
 // app.use(myLogger)
 
-//request body'sini(req.body) console'da görebilmek için express modülüne ait urlencoded ve json fonksiyonları kullanıldı
+//request body'sini(req.body) görebilmek, okuyabilip kaydetmek için express modülüne ait urlencoded ve json fonksiyonları kullanıldı
 app.use(express.urlencoded({extended: true}))
 app.use(express.json())
 
