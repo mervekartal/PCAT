@@ -47,6 +47,14 @@ app.get('/add', (req, res) => {
 app.get('/about', (req, res) => {
   res.render('about')
 })
+app.get('/photos/:id', async (req, res) => {
+  //console.log(req.params.id)
+  //res.render('about')
+  const photo = await Photo.findById(req.params.id)
+  res.render('photo',{
+    photo
+  })
+})
 
 //add photo - post operation
 app.post('/photos', async (req, res) => {
