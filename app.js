@@ -1,5 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const fileUpload = require('express-fileupload')
+const fs = require('fs')
 
 const path = require('path')
 const ejs = require('ejs')
@@ -32,11 +34,12 @@ app.use(express.static('public'))
 //request body'sini(req.body) görebilmek, okuyabilip kaydetmek için express modülüne ait urlencoded ve json fonksiyonları kullanıldı
 app.use(express.urlencoded({extended: true}))
 app.use(express.json())
+app.use(fileUpload())
 
 //routes
 app.get('/', async (req, res) => {
   //oluşturulan photo modeli yönlendirme alanına gönderilerek dinamik modelin html'e gömülebilmesi sağlanır.
-  const photos = await Photo.find({})
+  const photos = await Photo.find({}).sort('-dateCreated')
   res.render('index', {
     photos: photos
   })
@@ -59,8 +62,28 @@ app.get('/photos/:id', async (req, res) => {
 //add photo - post operation
 app.post('/photos', async (req, res) => {
   // console.log(req.body)
-  await Photo.create(req.body)
-  res.redirect('/')
+  // console.log(req.files.image)
+  // await Photo.create(req.body)
+  // res.redirect('/')
+
+  const uploadDir = 'public/uploads'
+  
+  //upload directory kontrolü
+  if(!fs.existsSync(uploadDir)) {
+    fs.mkdirSync(uploadDir)
+  }
+
+  let uploadedImage = req.files.image
+  let uploadPath = __dirname + '/public/uploads/' + uploadedImage.name 
+  
+  //görseli yüklenmesini istediğimiz klasöre move ediyoruz.
+  uploadedImage.mv(uploadPath,     async () => {
+    await Photo.create({
+      ...req.body,
+      image: '/uploads/' + uploadedImage.name
+    })
+    res.redirect('/')
+  })
 })
 
 
