@@ -12,7 +12,8 @@ const Photo = require('./models/Photo')
 const app = express();
 
 //connect db
-mongoose.connect('mongodb://localhost:27017/pcat-test-db')
+// mongoose.connect('mongodb://localhost:27017/pcat-test-db')
+mongoose.connect('mongodb+srv://merve:<password>@cluster0.gtwk1dr.mongodb.net/?retryWrites=true&w=majority')
 
 process.on('warning', (warning) => {
     console.log(warning.stack);
