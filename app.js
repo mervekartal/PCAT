@@ -58,7 +58,7 @@ app.get('/about', pageController.getAddPage)
 app.get('/photos/edit/:id', pageController.getEditPage)
 
 
-const port = 3000;
-app.listen(port, () => {
-  console.log(`Sunucu ${port} portunda başlatıldı`);
-});
+// const port = 3000;
+// app.listen(port, () => {
+//   console.log(`Sunucu ${port} portunda başlatıldı`)
+// })
