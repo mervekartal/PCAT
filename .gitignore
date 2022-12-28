@@ -145,4 +145,5 @@ dist
 temp/
 uploads/
 .DS_Store
+connection.txt
 # End of https://www.toptal.com/developers/gitignore/api/node
