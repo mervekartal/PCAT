@@ -6,13 +6,13 @@ exports.getAllPhotos = async (req, res) => {
 
     //pagination
     const page = req.query.page || 1 //request'ten gelen sayfa numarası, yoksa anasayfa
-    const photosPerPage = 2  //1 sayfada gösterilecek foto sayısı
+    const photosPerPage = 3  //1 sayfada gösterilecek foto sayısı
     const totalPhotos = await Photo.find().countDocuments() //toplam foto sayısı
 
     //sayfa geçişi
     const photos = await Photo.find({}).sort('-dateCreated')
     .skip((page-1) * photosPerPage)
-    .limit(2)
+    .limit(photosPerPage)
     res.render('index', {
       photos: photos, 
       current: page,
