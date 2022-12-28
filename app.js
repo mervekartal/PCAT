@@ -13,6 +13,8 @@ const app = express();
 
 //connect db
 // mongoose.connect('mongodb://localhost:27017/pcat-test-db')
+mongoose.set('strictQuery', false)
+
 mongoose.connect('mongodb+srv://merve1:hDZHHElNY1ETzcZz@cluster0.gtwk1dr.mongodb.net/pcat-db?retryWrites=true&w=majority').then(() => {
   console.log('DB Connected')
 }).catch((err) => {
@@ -58,7 +60,7 @@ app.get('/about', pageController.getAddPage)
 app.get('/photos/edit/:id', pageController.getEditPage)
 
 
-// const port = 3000;
-// app.listen(port, () => {
-//   console.log(`Sunucu ${port} portunda başlatıldı`)
-// })
+const port = 3000;
+app.listen(port, () => {
+  console.log(`Sunucu ${port} portunda başlatıldı`)
+})
