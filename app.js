@@ -13,7 +13,11 @@ const app = express();
 
 //connect db
 // mongoose.connect('mongodb://localhost:27017/pcat-test-db')
-mongoose.connect('mongodb+srv://merve:<password>@cluster0.gtwk1dr.mongodb.net/?retryWrites=true&w=majority')
+mongoose.connect('mongodb+srv://merve1:hDZHHElNY1ETzcZz@cluster0.gtwk1dr.mongodb.net/pcat-db?retryWrites=true&w=majority').then(() => {
+  console.log('DB Connected')
+}).catch((err) => {
+  console.log(err)
+})
 
 process.on('warning', (warning) => {
     console.log(warning.stack);
